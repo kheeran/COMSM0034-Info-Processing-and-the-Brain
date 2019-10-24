@@ -71,14 +71,17 @@ trials = 100
 print ("Repetition(s) per Sample: {}\nNo. of Trials: {} ".format(repetitions, trials))
 
 
-actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials)
-plot_fig(actual, estimate, laplace, alpha)
+# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials)
+# plot_fig(actual, estimate, laplace, alpha)
+#
+# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.25)
+# plot_fig(actual, estimate, laplace, alpha)
+#
+# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.5)
+# plot_fig(actual, estimate, laplace, alpha)
+#
+# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 1.0)
+# plot_fig(actual, estimate, laplace, alpha)
 
-actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.25)
-plot_fig(actual, estimate, laplace, alpha)
-
-actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.5)
-plot_fig(actual, estimate, laplace, alpha)
-
-actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 1.0)
+actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 1.25)
 plot_fig(actual, estimate, laplace, alpha)
