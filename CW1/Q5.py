@@ -4,8 +4,8 @@ import math
 import random
 
 def calc_entropy(probs):
-    # if np.sum(probs) != 1:
-    #     print ("WARNING: Probability distribution doesn't sum to 1, it sums to {}".format(np.sum(probs)))
+    if np.sum(probs) != 1:
+        print ("WARNING: Probability distribution doesn't sum to 1, it sums to {}".format(np.sum(probs)))
     entropy = 0
     for px in probs:
         if px != 0:
@@ -61,27 +61,54 @@ def plot_fig(actual, estimate, laplace, alpha, location = 111):
 
 
 # MAIN
-
 dist_X = np.full((8),1/8)
 actual_entropy = calc_entropy(dist_X)
 # print (actual_entropy)
 
 repetitions = 3
 trials = 100
+
+'''
 print ("Repetition(s) per Sample: {}\nNo. of Trials: {} ".format(repetitions, trials))
 
 
-# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials)
-# plot_fig(actual, estimate, laplace, alpha)
-#
-# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.25)
-# plot_fig(actual, estimate, laplace, alpha)
-#
-# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.5)
-# plot_fig(actual, estimate, laplace, alpha)
-#
-# actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 1.0)
-# plot_fig(actual, estimate, laplace, alpha)
-
-actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 1.25)
+actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials)
 plot_fig(actual, estimate, laplace, alpha)
+
+actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.25)
+plot_fig(actual, estimate, laplace, alpha)
+
+actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 0.5)
+plot_fig(actual, estimate, laplace, alpha)
+
+actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 1.0)
+plot_fig(actual, estimate, laplace, alpha)
+
+actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 2.0)
+plot_fig(actual, estimate, laplace, alpha)
+'''
+actual, estimate, laplace, alpha = trial_calculations(actual_entropy, repetitions, trials, laplace=True, alpha = 2.0)
+plot_fig(actual, estimate, laplace, alpha)
+#
+# X = [1/8, 7/8]
+# HX = calc_entropy(X)
+# Y = [9/16, 1/4, 3/16]
+# HY = calc_entropy(Y)
+# XY = [1/16, 1/16, 1/2, 1/4,1/8]
+# HXY = calc_entropy(XY)
+#
+# Xg1 = [1/9, 8/9]
+# HXg1 = calc_entropy(Xg1)
+#
+# Xg2 = [0,1]
+# HXg2 = calc_entropy(Xg2)
+#
+# Xg3 = [1/3,2/3]
+# HXg3 = calc_entropy(Xg3)
+#
+# HXgY = 9/16 * HXg1 + 1/4 * HXg2 + 3/16 * HXg3
+#
+# X = [1/8, 1/4, 5/16, 5/16]
+# HX = calc_entropy(X)
+#
+# print (HX)
