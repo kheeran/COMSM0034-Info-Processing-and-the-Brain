@@ -1924,8 +1924,8 @@
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1">woodworth1937experimental</bcf:citekey>
-    <bcf:citekey order="2">bellman1957dynamic</bcf:citekey>
-    <bcf:citekey order="3">bellman1957markov</bcf:citekey>
+    <bcf:citekey order="2">bellman1957markov</bcf:citekey>
+    <bcf:citekey order="3">bellman1957dynamic</bcf:citekey>
     <bcf:citekey order="4">sutton1987temporal</bcf:citekey>
     <bcf:citekey order="5">sutton1990time</bcf:citekey>
   </bcf:section>

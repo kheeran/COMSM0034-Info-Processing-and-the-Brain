@@ -3,23 +3,12 @@ import random
 import time
 import matplotlib.pyplot as plt
 
-def init_policy(shape):
+def init_policy(value, W, shape):
     policy = np.empty(shape, dtype=int)
     for i in range(shape[0]):
         for j in range(shape[1]):
             policy[i,j] = random.randint(0,3)
-
-    return policy
-
-# Ensure that initial policy converges
-def init_converging_policy(shape, W, reward):
-    policy = init_policy(shape)
-    check = True
-    while check:
-        if reward[move_pos((2,2), policy[2,2], W, shape)] == 0:
-            policy = init_policy(shape)
-        else:
-            check = False
+            policy = update_policy((i,j), policy, value, W)
     return policy
 
 
@@ -44,40 +33,58 @@ def valid_pos(pos, W, shape): # Validated
     return False if (pos in W or pos[0] < 0 or pos[1] < 0 or pos[0] >= shape[0] or pos[1] >= shape[1]) else True
 
 def move_pos(pos, action, W, shape):
-    if action == 0:
+    if pos == (2,2):
+        pos_next = (5,0)
+    elif action == 0:
         pos_next = (pos[0]-1,pos[1])
-    if action == 1:
+    elif action == 1:
         pos_next = (pos[0]+1,pos[1])
-    if action == 2:
+    elif action == 2:
         pos_next = (pos[0],pos[1]-1)
-    if action == 3:
+    elif action == 3:
         pos_next = (pos[0],pos[1]+1)
     return pos_next if valid_pos(pos_next,W,shape) else pos
 
-def update_values(policy, reward, value, W):
-    a = 0.2
-    d = 0.2
+def update_value(state, policy, reward, value, W, alpha=0.1, discount=0.9):
+    a = alpha
+    d = discount
     value_new = np.copy(value)
-    for i in range(value.shape[0]):
-        for j in range(value.shape[1]):
-            pos = (i,j)
-            if pos == (2,2):
-                value_new[pos] = 1
-            elif valid_pos(pos,W,value.shape):
-                pos_next = move_pos(pos, policy[pos], W, policy.shape)
-                value_new[pos] = value[pos] + a*(reward[pos_next] + d*value[pos_next] - value[pos])
+    pos = state
+    if valid_pos(pos,W,value.shape):
+        pos_next = move_pos(pos, policy[pos], W, policy.shape)
+        value_new[pos] = value[pos] + a*(reward[pos_next] + d*value[pos_next] - value[pos])
     return value_new
 
-def update_policy(policy, value, W):
-    for i in range(policy.shape[0]):
-        for j in range(policy.shape[1]):
-            if valid_pos((i,j),W,policy.shape):
-                next_poss = [move_pos((i,j),k, W, policy.shape) for k in range(4)]
-                next_vals = [value[pos] for pos in next_poss]
-                policy[i,j] = np.argmax(next_vals)
+def update_policy(state, policy, value, W, epoch=100, epochs=1000, epsilon_explore=0.7, epsilon_exploit=0.1, explore_prop=1/3):
+    if state == (2,2):
+        policy[state] = -10000000
+    elif valid_pos(state,W,policy.shape):
+        next_poss = [move_pos(state,k, W, policy.shape) for k in range(4)]
+        next_vals = [value[pos] for pos in next_poss]
+
+        # Switch from explore to exploit
+        if epoch > epochs*explore_prop:
+            epsilon = epsilon_exploit
+        else:
+            epsilon = epsilon_explore
+
+        # Prevent moving to self
+        move_to_self = True
+        while move_to_self:
+            if random.uniform(0,1) <= epsilon:
+                next_move = random.randint(0,3)
             else:
-                policy[i,j] = -1
+                next_move = np.argmax(next_vals)
+            if next_poss[next_move] == state:
+                next_vals[next_move] = -float("inf")
+            else:
+                move_to_self = False
+
+        policy[state] = next_move
+    else:
+        policy[state] = -1
     return policy
+
 
 def convert_policy_format(policy):
     policy_new = np.empty(policy.shape, dtype='U25')
@@ -91,8 +98,10 @@ def convert_policy_format(policy):
                 policy_new[i,j] = u"\u2190"
             elif policy[i,j] == 3:
                 policy_new[i,j] = u"\u2192"
-            else:
+            elif policy[i,j] == -1:
                 policy_new[i,j] = u"\u2022"
+            else:
+                policy_new[i,j] = "E"
     return policy_new
 
 def record_results(value, results, poss):
@@ -102,14 +111,14 @@ def record_results(value, results, poss):
         results[i].append(value[poss[i]])
     return results
 
-def plot_results(results, poss, shape):
+def plot_results(results, poss, shape, epochs, explore_prop, top_amount=3):
     top_results = []
     top_poss = []
-    top_amount = 3
-    title=f"Value of highest {top_amount} positions"
+    title=f"Value at highest {top_amount} states"
 
-    del results[2*shape[1] + 2]
-    del poss[2*shape[1] + 2]
+    # # Remove end state (2,2)
+    # del results[2*shape[1] + 2]
+    # del poss[2*shape[1] + 2]
 
     for i in range(top_amount):
         index = np.argmax(results)
@@ -122,7 +131,9 @@ def plot_results(results, poss, shape):
         plt.plot(top_results[i], label=(f"{top_poss[i]}" + (" #Start" if top_poss[i]==(5,0) else "  #End" if top_poss[i] == (2,2) else "")))
     plt.xlabel("Epochs")
     plt.ylabel("Value")
-    plt.legend()
+    xmin, xmax, ymin, ymax = plt.axis()
+    plt.vlines(epochs*explore_prop, ymin, ymax, label="explore to exploit", linestyle="dotted")
+    plt.legend(loc="best", framealpha=1)
     plt.title(title)
     plt.show()
 
@@ -130,9 +141,9 @@ def plot_results(results, poss, shape):
 def tests():
     shape = [6,8]
     W = [(1,1),(1,2),(1,3),(1,4),(1,5),(2,1),(2,5),(3,2),(3,5),(3,6),(4,2),(5,1)] # Walls
-    policy = init_policy(shape)
     reward = init_reward(shape)
     value = init_value(shape)
+    policy = init_policy(value, W, shape)
 
     # Testing validation function
     print ("Testing validation function")
@@ -160,28 +171,44 @@ def main():
     shape = [6,8]
     W = [(1,1),(1,2),(1,3),(1,4),(1,5),(2,1),(2,5),(3,2),(3,5),(3,6),(4,2),(5,1)] # Walls
     reward = init_reward(shape)
-    policy = init_converging_policy(shape, W, reward)
     value = init_value(shape)
+    policy = init_policy(value, W, shape)
     record_poss = add_all_indicies(shape)
     results = []
 
+    # Hyperparams for learning
+    alpha = 0.4
+    discount = 0.9
+    epsilon_explore = 0.7
+    epsilon_exploit = 0
+    explore_prop = 2/3
+
     # Main epochs for learning
     start = time.time()
-    epochs = 10
+    epochs = 100
     for i in range(0,epochs):
-        value = update_values(policy, reward, value, W)
-        policy = update_policy(policy, value, W)
+        if i%(int(epochs/10)) == 0:
+            print (f"Epoch: {i}")
+        state = (5,0)
         results = record_results(value, results, record_poss)
+        while state != (2,2):
+            # if i==91:
+            #     print (f"{state},")
+            value = update_value(state, policy, reward, value, W, alpha=alpha, discount=discount)
+            policy = update_policy(state, policy, value, W, epoch=i, epochs=epochs, epsilon_explore=epsilon_explore, epsilon_exploit=epsilon_exploit, explore_prop=explore_prop)
+            state = move_pos(state, policy[state], W, shape)
 
-
-
+    # Final outcome
     print(f"Time taken: {time.time() - start}")
     print ("Final policy: ")
     print(convert_policy_format(policy))
     print ("Final values: ")
     print (value)
     input("Press Enter to continue...")
-    plot_results(results, record_poss, shape)
 
-
+    # Plot results of top valued states
+    plot_results(results, record_poss, shape, epochs, explore_prop, top_amount=4)
+    plt.imshow(value)
+    plt.show()
+    
 main()

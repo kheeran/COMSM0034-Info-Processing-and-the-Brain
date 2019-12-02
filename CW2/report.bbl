@@ -41,6 +41,49 @@
       \field{title}{Experimental Psychology. New York: Holt, 1938}
       \field{year}{1937}
     \endentry
+    \entry{bellman1957markov}{article}{}
+      \name{author}{1}{}{%
+        {{hash=74da901e94f45c3ed03357170eb33774}{%
+           family={Bellman},
+           familyi={B\bibinitperiod},
+           given={R.\bibnamedelimi E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{fullhash}{74da901e94f45c3ed03357170eb33774}
+      \strng{bibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorbibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authornamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorfullhash}{74da901e94f45c3ed03357170eb33774}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A markov decision process. journal of Mathematical Mechanics}
+      \field{year}{1957}
+    \endentry
+    \entry{bellman1957dynamic}{article}{}
+      \name{author}{1}{}{%
+        {{hash=74da901e94f45c3ed03357170eb33774}{%
+           family={Bellman},
+           familyi={B\bibinitperiod},
+           given={R.\bibnamedelimi E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{fullhash}{74da901e94f45c3ed03357170eb33774}
+      \strng{bibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorbibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authornamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorfullhash}{74da901e94f45c3ed03357170eb33774}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Prese Princeton, 1957}
+      \field{title}{Dynamic programming, princeton univ}
+      \field{year}{1957}
+    \endentry
     \entry{sutton1987temporal}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=2b25ab354ac9b3006192cd52bd9af626}{%
