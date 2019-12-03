@@ -3,12 +3,12 @@ import random
 import time
 import matplotlib.pyplot as plt
 
-def init_policy(value, W, shape):
+def init_policy(reward, value, W, shape):
     policy = np.empty(shape, dtype=int)
     for i in range(shape[0]):
         for j in range(shape[1]):
             policy[i,j] = random.randint(0,3)
-            policy = update_policy((i,j), policy, value, W)
+            policy = update_policy((i,j), reward, policy, value, W)
     return policy
 
 
@@ -21,6 +21,12 @@ def init_reward(shape):
 def init_value(shape):
     value = np.zeros(shape, dtype=float)
     return value
+
+def init_results(poss):
+    results = []
+    for i in poss:
+        results.append([])
+    return results
 
 def add_all_indicies(shape):
     record_poss = []
@@ -55,12 +61,12 @@ def update_value(state, policy, reward, value, W, alpha=0.1, discount=0.9):
         value_new[pos] = value[pos] + a*(reward[pos_next] + d*value[pos_next] - value[pos])
     return value_new
 
-def update_policy(state, policy, value, W, epoch=100, epochs=1000, epsilon_explore=0.7, epsilon_exploit=0.1, explore_prop=1/3):
+def update_policy(state, reward, policy, value, W, discount=0.9, epoch=100, epochs=1000, epsilon_explore=0.7, epsilon_exploit=0.1, explore_prop=1/3):
     if state == (2,2):
         policy[state] = -10000000
     elif valid_pos(state,W,policy.shape):
         next_poss = [move_pos(state,k, W, policy.shape) for k in range(4)]
-        next_vals = [value[pos] for pos in next_poss]
+        next_vals = [reward[pos] + discount*value[pos] for pos in next_poss]
 
         # Switch from explore to exploit
         if epoch > epochs*explore_prop:
@@ -85,7 +91,6 @@ def update_policy(state, policy, value, W, epoch=100, epochs=1000, epsilon_explo
         policy[state] = -1
     return policy
 
-
 def convert_policy_format(policy):
     policy_new = np.empty(policy.shape, dtype='U25')
     for i in range(policy.shape[0]):
@@ -105,45 +110,90 @@ def convert_policy_format(policy):
     return policy_new
 
 def record_results(value, results, poss):
-    for i in poss:
-        results.append([])
     for i in range(len(poss)):
         results[i].append(value[poss[i]])
     return results
 
-def plot_results(results, poss, shape, epochs, explore_prop, top_amount=3):
+def plot_results(results, W, poss, shape, epochs, explore_prop, sample_amount=3):
+
+    # Check if the samples taken from the results is not more than the results
+    sample_amount_check = True
+    while sample_amount_check:
+        if sample_amount*2 > len(results):
+            sample_amount -= 1
+            print("sample_amount reduced by 1")
+        else:
+            sample_amount_check = False
+
     top_results = []
+    mean_var_top_results = []
     top_poss = []
-    title=f"Value at highest {top_amount} states"
+    bottom_results = []
+    mean_var_bottom_results = []
+    bottom_poss = []
+    title=f"Value at highest {sample_amount} states"
 
-    # # Remove end state (2,2)
-    # del results[2*shape[1] + 2]
-    # del poss[2*shape[1] + 2]
+    # Remove end state (2,2)
+    del results[2*shape[1] + 2]
+    del poss[2*shape[1] + 2]
 
-    for i in range(top_amount):
-        index = np.argmax(results)
-        top_results.append(results[index])
-        top_poss.append(poss[index])
-        del results[index]
-        del poss[index]
+    for i in range(sample_amount):
+        index_top = np.argmax(results, axis=0)[epochs-1]
+        top_results.append(results[index_top])
+        mean_var_top_results.append((np.mean(results[index_top][:int(explore_prop*epochs)]),np.var(results[index_top][:int(explore_prop*epochs)])))
+        top_poss.append(poss[index_top])
+
+        del results[index_top]
+        del poss[index_top]
+
+        is_wall = True
+        while is_wall:
+            index_bottom = np.argmin(results, axis=0)[epochs-1]
+            if poss[index_bottom] in W:
+                del results[index_bottom]
+                del poss[index_bottom]
+            else:
+                is_wall = False
+
+        bottom_results.append(results[index_bottom])
+        mean_var_bottom_results.append((np.mean(results[index_bottom][:int(explore_prop*epochs)]),np.var(results[index_bottom][:int(explore_prop*epochs)])))
+        bottom_poss.append(poss[index_bottom])
+
+        del results[index_bottom]
+        del poss[index_bottom]
+
 
     for i in range(len(top_poss)):
-        plt.plot(top_results[i], label=(f"{top_poss[i]}" + (" #Start" if top_poss[i]==(5,0) else "  #End" if top_poss[i] == (2,2) else "")))
+        plt.plot(top_results[i], label=(f"{top_poss[i]}" + f" Top No. {i+1}" + (" #Start" if top_poss[i]==(5,0) else "  #End" if top_poss[i] == (2,2) else "") + f" {mean_var_top_results[i]}"))
     plt.xlabel("Epochs")
     plt.ylabel("Value")
     xmin, xmax, ymin, ymax = plt.axis()
     plt.vlines(epochs*explore_prop, ymin, ymax, label="explore to exploit", linestyle="dotted")
     plt.legend(loc="best", framealpha=1)
-    plt.title(title)
-    plt.show()
+    plt.title(f"Value at the highest {sample_amount} states")
+    plt.draw()
+    plt.waitforbuttonpress()
+    plt.clf()
 
+    for i in range(len(bottom_poss)):
+        plt.plot(bottom_results[i], label=(f"{bottom_poss[i]}" + f" Bottom No. {i+1}" + (" #Start" if bottom_poss[i]==(5,0) else "  #End" if bottom_poss[i] == (2,2) else "") + f" {mean_var_bottom_results[i]}"))
+    plt.xlabel("Epochs")
+    plt.ylabel("Value")
+    xmin, xmax, ymin, ymax = plt.axis()
+    plt.vlines(epochs*explore_prop, ymin, ymax, label="explore to exploit", linestyle="dotted")
+    plt.legend(loc="best", framealpha=1)
+    plt.title(f"Value at the lowest {sample_amount} states")
+    plt.draw()
+    plt.waitforbuttonpress()
+    plt.clf()
+    plt.close()
 
 def tests():
     shape = [6,8]
     W = [(1,1),(1,2),(1,3),(1,4),(1,5),(2,1),(2,5),(3,2),(3,5),(3,6),(4,2),(5,1)] # Walls
     reward = init_reward(shape)
     value = init_value(shape)
-    policy = init_policy(value, W, shape)
+    policy = init_policy(reward, value, W, shape)
 
     # Testing validation function
     print ("Testing validation function")
@@ -172,31 +222,30 @@ def main():
     W = [(1,1),(1,2),(1,3),(1,4),(1,5),(2,1),(2,5),(3,2),(3,5),(3,6),(4,2),(5,1)] # Walls
     reward = init_reward(shape)
     value = init_value(shape)
-    policy = init_policy(value, W, shape)
+    policy = init_policy(reward, value, W, shape)
     record_poss = add_all_indicies(shape)
-    results = []
+    results = init_results(record_poss)
 
     # Hyperparams for learning
-    alpha = 0.4
+    alpha = 0.1
     discount = 0.9
     epsilon_explore = 0.7
     epsilon_exploit = 0
-    explore_prop = 2/3
+    explore_prop = 4/5
 
     # Main epochs for learning
     start = time.time()
-    epochs = 100
+    epochs = 3000
     for i in range(0,epochs):
         if i%(int(epochs/10)) == 0:
             print (f"Epoch: {i}")
         state = (5,0)
         results = record_results(value, results, record_poss)
         while state != (2,2):
-            # if i==91:
-            #     print (f"{state},")
             value = update_value(state, policy, reward, value, W, alpha=alpha, discount=discount)
-            policy = update_policy(state, policy, value, W, epoch=i, epochs=epochs, epsilon_explore=epsilon_explore, epsilon_exploit=epsilon_exploit, explore_prop=explore_prop)
+            policy = update_policy(state, reward, policy, value, W, discount=discount, epoch=i, epochs=epochs, epsilon_explore=epsilon_explore, epsilon_exploit=epsilon_exploit, explore_prop=explore_prop)
             state = move_pos(state, policy[state], W, shape)
+
 
     # Final outcome
     print(f"Time taken: {time.time() - start}")
@@ -207,8 +256,8 @@ def main():
     input("Press Enter to continue...")
 
     # Plot results of top valued states
-    plot_results(results, record_poss, shape, epochs, explore_prop, top_amount=4)
-    plt.imshow(value)
+    plot_results(results, W, record_poss, shape, epochs, explore_prop, sample_amount=4)
+    plt.imshow(value, cmap='gray')
     plt.show()
-    
+
 main()
