@@ -1,0 +1,388 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global}
+    \entry{woodworth1937experimental}{article}{}
+      \name{author}{1}{}{%
+        {{hash=013fcbbddbc99670bb9aaebc36cc3a39}{%
+           family={Woodworth},
+           familyi={W\bibinitperiod},
+           given={Robert\bibnamedelima Sessions},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{013fcbbddbc99670bb9aaebc36cc3a39}
+      \strng{fullhash}{013fcbbddbc99670bb9aaebc36cc3a39}
+      \strng{bibnamehash}{013fcbbddbc99670bb9aaebc36cc3a39}
+      \strng{authorbibnamehash}{013fcbbddbc99670bb9aaebc36cc3a39}
+      \strng{authornamehash}{013fcbbddbc99670bb9aaebc36cc3a39}
+      \strng{authorfullhash}{013fcbbddbc99670bb9aaebc36cc3a39}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Department of Psychology Dartmouth College Hanover, New Hampshire}
+      \field{title}{Experimental Psychology. New York: Holt, 1938}
+      \field{year}{1937}
+    \endentry
+    \entry{bellman1957markov}{article}{}
+      \name{author}{1}{}{%
+        {{hash=74da901e94f45c3ed03357170eb33774}{%
+           family={Bellman},
+           familyi={B\bibinitperiod},
+           given={R.\bibnamedelimi E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{fullhash}{74da901e94f45c3ed03357170eb33774}
+      \strng{bibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorbibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authornamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorfullhash}{74da901e94f45c3ed03357170eb33774}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{A markov decision process. journal of Mathematical Mechanics}
+      \field{year}{1957}
+    \endentry
+    \entry{bellman1957dynamic}{article}{}
+      \name{author}{1}{}{%
+        {{hash=74da901e94f45c3ed03357170eb33774}{%
+           family={Bellman},
+           familyi={B\bibinitperiod},
+           given={R.\bibnamedelimi E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{fullhash}{74da901e94f45c3ed03357170eb33774}
+      \strng{bibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorbibnamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authornamehash}{74da901e94f45c3ed03357170eb33774}
+      \strng{authorfullhash}{74da901e94f45c3ed03357170eb33774}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Prese Princeton, 1957}
+      \field{title}{Dynamic programming, princeton univ}
+      \field{year}{1957}
+    \endentry
+    \entry{sutton1987temporal}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=2b25ab354ac9b3006192cd52bd9af626}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=4f104417cfd96b2a360b62d8cf110a96}{%
+           family={Barto},
+           familyi={B\bibinitperiod},
+           given={Andrew\bibnamedelima G},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Seattle, WA}%
+      }
+      \strng{namehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{fullhash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{bibnamehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{authorbibnamehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{authornamehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{authorfullhash}{9767c22ff969d07f27ccd9229b1671a5}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the ninth annual conference of the cognitive science society}
+      \field{title}{A temporal-difference model of classical conditioning}
+      \field{year}{1987}
+      \field{pages}{355\bibrangedash 378}
+      \range{pages}{24}
+    \endentry
+    \entry{sutton1990time}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2b25ab354ac9b3006192cd52bd9af626}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=4f104417cfd96b2a360b62d8cf110a96}{%
+           family={Barto},
+           familyi={B\bibinitperiod},
+           given={Andrew\bibnamedelima G},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {The MIT Press}%
+      }
+      \strng{namehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{fullhash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{bibnamehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{authorbibnamehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{authornamehash}{9767c22ff969d07f27ccd9229b1671a5}
+      \strng{authorfullhash}{9767c22ff969d07f27ccd9229b1671a5}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Time-derivative models of pavlovian reinforcement.}
+      \field{year}{1990}
+    \endentry
+    \entry{reed1996intrinsic}{article}{}
+      \name{author}{3}{}{%
+        {{hash=1244d7324aa52e5c118e52d7523dc27c}{%
+           family={Reed},
+           familyi={R\bibinitperiod},
+           given={Phil},
+           giveni={P\bibinitperiod}}}%
+        {{hash=df39f51bb5ff3f6dd61299619f6390b5}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+        {{hash=bd6b6d848383c44df5aed9d8a096775b}{%
+           family={Nokes},
+           familyi={N\bibinitperiod},
+           given={Tristan},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{cd61a05f985422b876acb4b459d95a77}
+      \strng{fullhash}{cd61a05f985422b876acb4b459d95a77}
+      \strng{bibnamehash}{cd61a05f985422b876acb4b459d95a77}
+      \strng{authorbibnamehash}{cd61a05f985422b876acb4b459d95a77}
+      \strng{authornamehash}{cd61a05f985422b876acb4b459d95a77}
+      \strng{authorfullhash}{cd61a05f985422b876acb4b459d95a77}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Animal Learning \& Behavior}
+      \field{number}{1}
+      \field{title}{Intrinsic reinforcing properties of putatively neutral stimuli in an instrumental two-lever discrimination task}
+      \field{volume}{24}
+      \field{year}{1996}
+      \field{pages}{38\bibrangedash 45}
+      \range{pages}{8}
+    \endentry
+    \entry{sutton1998introduction}{book}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=2b25ab354ac9b3006192cd52bd9af626}{%
+           family={Sutton},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima S},
+           giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=4f104417cfd96b2a360b62d8cf110a96}{%
+           family={Barto},
+           familyi={B\bibinitperiod},
+           given={Andrew\bibnamedelima G},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT press Cambridge}%
+      }
+      \strng{namehash}{64805beec78d3a5a06eb525dd63f6639}
+      \strng{fullhash}{64805beec78d3a5a06eb525dd63f6639}
+      \strng{bibnamehash}{64805beec78d3a5a06eb525dd63f6639}
+      \strng{authorbibnamehash}{64805beec78d3a5a06eb525dd63f6639}
+      \strng{authornamehash}{64805beec78d3a5a06eb525dd63f6639}
+      \strng{authorfullhash}{64805beec78d3a5a06eb525dd63f6639}
+      \field{sortinit}{1}
+      \field{sortinithash}{2174f786c6195e7fe2ee1c229b416e29}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{4}
+      \field{title}{Introduction to reinforcement learning}
+      \field{volume}{2}
+      \field{year}{1998}
+    \endentry
+    \entry{dayan2002reward}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ef0afbe0b4e15059c963e026fe213c34}{%
+           family={Dayan},
+           familyi={D\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=a866331bd74404e147454e21d212d185}{%
+           family={Balleine},
+           familyi={B\bibinitperiod},
+           given={Bernard\bibnamedelima W},
+           giveni={B\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{d471eaf4466846aaeb12894d7d7616dd}
+      \strng{fullhash}{d471eaf4466846aaeb12894d7d7616dd}
+      \strng{bibnamehash}{d471eaf4466846aaeb12894d7d7616dd}
+      \strng{authorbibnamehash}{d471eaf4466846aaeb12894d7d7616dd}
+      \strng{authornamehash}{d471eaf4466846aaeb12894d7d7616dd}
+      \strng{authorfullhash}{d471eaf4466846aaeb12894d7d7616dd}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neuron}
+      \field{number}{2}
+      \field{title}{Reward, motivation, and reinforcement learning}
+      \field{volume}{36}
+      \field{year}{2002}
+      \field{pages}{285\bibrangedash 298}
+      \range{pages}{14}
+    \endentry
+    \entry{kakade2002dopamine}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d45f41902c25eaa9ac992a04bff99dc6}{%
+           family={Kakade},
+           familyi={K\bibinitperiod},
+           given={Sham},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ef0afbe0b4e15059c963e026fe213c34}{%
+           family={Dayan},
+           familyi={D\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{2abcec31b1e56da00610273aa951d3d9}
+      \strng{fullhash}{2abcec31b1e56da00610273aa951d3d9}
+      \strng{bibnamehash}{2abcec31b1e56da00610273aa951d3d9}
+      \strng{authorbibnamehash}{2abcec31b1e56da00610273aa951d3d9}
+      \strng{authornamehash}{2abcec31b1e56da00610273aa951d3d9}
+      \strng{authorfullhash}{2abcec31b1e56da00610273aa951d3d9}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neural Networks}
+      \field{number}{4-6}
+      \field{title}{Dopamine: generalization and bonuses}
+      \field{volume}{15}
+      \field{year}{2002}
+      \field{pages}{549\bibrangedash 559}
+      \range{pages}{11}
+    \endentry
+    \entry{schultz2002getting}{article}{}
+      \name{author}{1}{}{%
+        {{hash=37c20c942bee2a9dea102dcb81ab695b}{%
+           family={Schultz},
+           familyi={S\bibinitperiod},
+           given={Wolfram},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{37c20c942bee2a9dea102dcb81ab695b}
+      \strng{fullhash}{37c20c942bee2a9dea102dcb81ab695b}
+      \strng{bibnamehash}{37c20c942bee2a9dea102dcb81ab695b}
+      \strng{authorbibnamehash}{37c20c942bee2a9dea102dcb81ab695b}
+      \strng{authornamehash}{37c20c942bee2a9dea102dcb81ab695b}
+      \strng{authorfullhash}{37c20c942bee2a9dea102dcb81ab695b}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neuron}
+      \field{number}{2}
+      \field{title}{Getting formal with dopamine and reward}
+      \field{volume}{36}
+      \field{year}{2002}
+      \field{pages}{241\bibrangedash 263}
+      \range{pages}{23}
+    \endentry
+    \entry{chentanez2005intrinsically}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=d47ede25f528b578ea7d00270e9c2106}{%
+           family={Chentanez},
+           familyi={C\bibinitperiod},
+           given={Nuttapong},
+           giveni={N\bibinitperiod}}}%
+        {{hash=4f104417cfd96b2a360b62d8cf110a96}{%
+           family={Barto},
+           familyi={B\bibinitperiod},
+           given={Andrew\bibnamedelima G},
+           giveni={A\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=2b3202d40dae8a29a4013fe363d7de97}{%
+           family={Singh},
+           familyi={S\bibinitperiod},
+           given={Satinder\bibnamedelima P},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{b173dc1abbc199ab0a078fc6fcd43357}
+      \strng{fullhash}{b173dc1abbc199ab0a078fc6fcd43357}
+      \strng{bibnamehash}{b173dc1abbc199ab0a078fc6fcd43357}
+      \strng{authorbibnamehash}{b173dc1abbc199ab0a078fc6fcd43357}
+      \strng{authornamehash}{b173dc1abbc199ab0a078fc6fcd43357}
+      \strng{authorfullhash}{b173dc1abbc199ab0a078fc6fcd43357}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in neural information processing systems}
+      \field{title}{Intrinsically motivated reinforcement learning}
+      \field{year}{2005}
+      \field{pages}{1281\bibrangedash 1288}
+      \range{pages}{8}
+    \endentry
+    \entry{roelfsema2018control}{article}{}
+      \name{author}{2}{}{%
+        {{hash=f3ef7ef3a202fef2490a193827f608a5}{%
+           family={Roelfsema},
+           familyi={R\bibinitperiod},
+           given={Pieter\bibnamedelima R},
+           giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=15cad2eb1ecefdeb8511dfc1ed1bd6ae}{%
+           family={Holtmaat},
+           familyi={H\bibinitperiod},
+           given={Anthony},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Nature Publishing Group}%
+      }
+      \strng{namehash}{08a188169da43bd9257acfa347f046fd}
+      \strng{fullhash}{08a188169da43bd9257acfa347f046fd}
+      \strng{bibnamehash}{08a188169da43bd9257acfa347f046fd}
+      \strng{authorbibnamehash}{08a188169da43bd9257acfa347f046fd}
+      \strng{authornamehash}{08a188169da43bd9257acfa347f046fd}
+      \strng{authorfullhash}{08a188169da43bd9257acfa347f046fd}
+      \field{sortinit}{2}
+      \field{sortinithash}{cbff857e587bcb4635511624d773949e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature Reviews Neuroscience}
+      \field{number}{3}
+      \field{title}{Control of synaptic plasticity in deep cortical networks}
+      \field{volume}{19}
+      \field{year}{2018}
+      \field{pages}{166}
+      \range{pages}{1}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -19,7 +19,7 @@ For CW2, I have decided to implement and explore the behaviour of the classical 
 \section*{Question 1}
 The RL algorithm is based on the formal framework of Markov decision processes. A Markov decision process is a 4-tuple $(S,A,P_a, R_a)$ that models an environment where $S =$ the set of states, $A =$ the set of actions, $P_a(s,s')$ the transition probability of the action $a$ taking state $s$ to $s'$ and $R_a(s,s')$ the reward function of the action $a$ which takes state $s$ to $s'$. We often include a discount factor $\gamma \in [0,1]$ to discount future rewards. In the algorithm, we will exlpoit the Markovian property that the probability of being in a state $s_{t+1}$ with reward $R_a(s_t, s_{t+1})$ at time $t+1$ is completely described by the state $s_t$ and action $a_t$ at time $t$, independent of states and actions before time $t$.
 
-In this CW2 the environment is represented by the $6 \times 8$ grid world with walls as obstacles and a single terminal state with reward of 1. In this finite world, the goal is for the agent to obtain the highest reward by following an optimal policy (the actions to take at a particular state) of moving through the environment, which turns out to be the shortest path to the terminal state. Figure \ref{} represents the grid world where each non-walled tile of the grid is a state and the set of actions are $\{up, down, left, right\}$ which move to the respective adjacent non-walled tiles.
+In this CW2 the environment is represented by the $6 \times 8$ grid world with walls as obstacles and a single terminal state with reward of 1. In this finite world, the goal is for the agent to obtain the highest reward by following an optimal policy (the actions to take at a particular state) of moving through the environment, which turns out to be the shortest path to the terminal state. Figure \ref{grid-world-layout} represents the grid world where each non-walled tile of the grid is a state and the set of actions are $\{up, down, left, right\}$ which move to the respective adjacent non-walled tiles.
 
 
 \section*{Question 2}
@@ -31,11 +31,11 @@ The RL algorithm is highly relatable to areas of the brain such as the dopaminer
 \section*{Question 4}
 It has been shown that novel sensory stimuli induce similar activity of dopamine cells on unpredicted rewards \cite{kakade2002dopamine}. The difference being that as the stimuli becomes familiar, the activity diminishes. This has been reasoned by the fact that novelty itself has rewarding characteristics \cite{reed1996intrinsic} and is intrinsically motivated \cite{dayan2002reward}. The algorithm we have used is a solely extrinsically motivated method of RL, it doesn't cater for the intrinsically motivated rewards that biologcally occurs in animals. Biologically, this intrinsic motivation encourages exploration of an environment which in our algorithm is modelled by the epsilon-greedy mechanism of taking a random action with probability $\epsilon$. However, this approach isn't motivated by the novelty of a stimuli (or state in our case). 
 
-Sutton and Barto identify this shortcomming of RL and note that an animal's reward signals are determined by processes within its brain that monitor both the external state and animal's internal state \cite{sutton1998introduction}. 
+Sutton and Barto identify this shortcomming of RL and note that an animal's reward signals are determined by processes within its brain that monitor both the external state and animal's internal state \cite{sutton1998introduction}. Barto goes on to develop an \textit{Intrinsically Motivated Reinforcement Learning} model \cite{chentanez2005intrinsically}. This model divides the environment into an internal and external environment, as seen in Figure \ref{fig:Internal-External}. The external enrivonment behaves similarly to our current model, however, the additional internal environment of the model characterises the organism, in particular, it's motivational system. This internal enviroment "\textit{needs to be a sophisticated system that should not have to be redisigned for different problems}", as described by Barto et al. 
 
 \begin{figure}[h]
 	\includegraphics[width=\textwidth]{Q4-Internal-External-Environment.png}
-	\caption{Agent-Environment Interaction in RL. \textbf{A}: The usual view. \textbf{B}: An elaboration. \textit{Sourced from \cite{chentanez2005intrinsically}}.
+	\caption{Agent-Environment Interaction in RL. \textbf{A}: The usual view. \textbf{B}: An elaboration. \textit{Sourced from \cite{chentanez2005intrinsically}}.}.
 	\label{fig:Internal-External}
 
 \end{figure}
@@ -43,6 +43,5 @@ Sutton and Barto identify this shortcomming of RL and note that an animal's rewa
 \newpage
 
 \printbibliography
-
 
 \end{document}
