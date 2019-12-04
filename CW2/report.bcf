@@ -1928,41 +1928,9 @@
     <bcf:citekey order="3">bellman1957dynamic</bcf:citekey>
     <bcf:citekey order="4">sutton1987temporal</bcf:citekey>
     <bcf:citekey order="5">sutton1990time</bcf:citekey>
-  </bcf:section>
-  <!-- SORTING TEMPLATES -->
-  <bcf:sortingtemplate name="ynt">
-    <bcf:sort order="1">
-      <bcf:sortitem order="1">presort</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="2" final="1">
-      <bcf:sortitem order="1">sortkey</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="3">
-      <bcf:sortitem order="1">sortyear</bcf:sortitem>
-      <bcf:sortitem order="2">year</bcf:sortitem>
-      <bcf:sortitem order="3">9999</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="4">
-      <bcf:sortitem order="1">sortname</bcf:sortitem>
-      <bcf:sortitem order="2">author</bcf:sortitem>
-      <bcf:sortitem order="3">editor</bcf:sortitem>
-      <bcf:sortitem order="4">translator</bcf:sortitem>
-      <bcf:sortitem order="5">sorttitle</bcf:sortitem>
-      <bcf:sortitem order="6">title</bcf:sortitem>
-    </bcf:sort>
-    <bcf:sort order="5">
-      <bcf:sortitem order="1">sorttitle</bcf:sortitem>
-      <bcf:sortitem order="2">title</bcf:sortitem>
-    </bcf:sort>
-  </bcf:sortingtemplate>
-  <!-- DATALISTS -->
-  <bcf:datalist section="0"
-                name="ynt/global//global/global"
-                type="entry"
-                sortingtemplatename="ynt"
-                sortingnamekeytemplatename="global"
-                labelprefix=""
-                uniquenametemplatename="global"
-                labelalphanametemplatename="global">
-  </bcf:datalist>
-</bcf:controlfile>
+    <bcf:citekey order="6">roelfsema2018control</bcf:citekey>
+    <bcf:citekey order="7">schultz2002getting</bcf:citekey>
+    <bcf:citekey order="8">kakade2002dopamine</bcf:citekey>
+    <bcf:citekey order="9">reed1996intrinsic</bcf:citekey>
+    <bcf:citekey order="10">dayan2002reward</bcf:citekey>
+    <bcf:citekey order="11">sutton1998introduction</bcf:citekey>
