@@ -28,6 +28,16 @@ def init_results(poss):
         results.append([])
     return results
 
+def init_shortest_path():
+    a = np.array([[18, 17, 16, 15, 14, 13, 12, 11],
+        [19, -1000, -1000, -1000, -1000, -1000, 11, 10],
+        [20, -1000, 0, 1, 2, -1000, 10, 9],
+        [21, 22, -1000, 2, 3, -1000, -1000, 8],
+        [22, 23, -1000, 3, 4, 5, 6, 7],
+        [23, -1000, 5, 4, 5, 6, 7, 8]])
+    return a
+
+
 def add_all_indicies(shape):
     record_poss = []
     for i in range(shape[0]):
@@ -114,7 +124,7 @@ def record_results(value, results, poss):
         results[i].append(value[poss[i]])
     return results
 
-def plot_results(results, W, poss, shape, epochs, explore_prop, sample_amount=3):
+def plot_results(results, W, poss, shape, epochs, explore_prop,performance_check, sample_amount=3):
 
     # Check if the samples taken from the results is not more than the results
     sample_amount_check = True
@@ -163,29 +173,39 @@ def plot_results(results, W, poss, shape, epochs, explore_prop, sample_amount=3)
         del poss[index_bottom]
 
 
+    print_var = False
     for i in range(len(top_poss)):
-        plt.plot(top_results[i], label=(f"{top_poss[i]}" + f" Top No. {i+1}" + (" #Start" if top_poss[i]==(5,0) else "  #End" if top_poss[i] == (2,2) else "") + f" {mean_var_top_results[i]}"))
+        plt.plot(top_results[i], label=(f"{top_poss[i]}" + f" Top No. {i+1}" + (" #Start" if top_poss[i]==(5,0) else "  #End" if top_poss[i] == (2,2) else "") + (f" {mean_var_top_results[i]}" if print_var else "") ))
     plt.xlabel("Epochs")
     plt.ylabel("Value")
     xmin, xmax, ymin, ymax = plt.axis()
-    plt.vlines(epochs*explore_prop, ymin, ymax, label="explore to exploit", linestyle="dotted")
+    # plt.vlines(epochs*explore_prop, ymin, ymax, label="explore to exploit", linestyle="dotted")
     plt.legend(loc="best", framealpha=1)
     plt.title(f"Value at the highest {sample_amount} states")
     plt.draw()
     plt.waitforbuttonpress()
     plt.clf()
 
-    for i in range(len(bottom_poss)):
-        plt.plot(bottom_results[i], label=(f"{bottom_poss[i]}" + f" Bottom No. {i+1}" + (" #Start" if bottom_poss[i]==(5,0) else "  #End" if bottom_poss[i] == (2,2) else "") + f" {mean_var_bottom_results[i]}"))
+    plt.plot(performance_check)
+    plt.title("Learning curve")
     plt.xlabel("Epochs")
-    plt.ylabel("Value")
-    xmin, xmax, ymin, ymax = plt.axis()
-    plt.vlines(epochs*explore_prop, ymin, ymax, label="explore to exploit", linestyle="dotted")
-    plt.legend(loc="best", framealpha=1)
-    plt.title(f"Value at the lowest {sample_amount} states")
+    plt.ylabel("Error in shortest paths")
     plt.draw()
     plt.waitforbuttonpress()
     plt.clf()
+
+    # for i in range(len(bottom_poss)):
+    #     plt.plot(bottom_results[i], label=(f"{bottom_poss[i]}" + f" Bottom No. {i+1}" + (" #Start" if bottom_poss[i]==(5,0) else "  #End" if bottom_poss[i] == (2,2) else "") + (f" {mean_var_bottom_results[i]}" if print_var else "")))
+    # plt.xlabel("Epochs")
+    # plt.ylabel("Value")
+    # xmin, xmax, ymin, ymax = plt.axis()
+    # plt.vlines(epochs*explore_prop, ymin, ymax, label="explore to exploit", linestyle="dotted")
+    # plt.legend(loc="best", framealpha=1)
+    # plt.title(f"Value at the lowest {sample_amount} states")
+    # plt.draw()
+    # plt.waitforbuttonpress()
+    # plt.clf()
+
     plt.close()
 
 def tests():
@@ -215,6 +235,13 @@ def tests():
                 validation[i,j,k] = move_pos((i,j),k,W,shape)
     print (validation[0])
 
+def performance(state, policy, W, shape):
+    no_steps = 0
+    while state != (2,2):
+        state = move_pos(state, policy[state], W, shape)
+        no_steps += 1
+
+    return no_steps
 
 
 def main():
@@ -225,18 +252,21 @@ def main():
     policy = init_policy(reward, value, W, shape)
     record_poss = add_all_indicies(shape)
     results = init_results(record_poss)
+    performance_check = []
+    shortest_path = init_shortest_path()
 
     # Hyperparams for learning
     alpha = 0.1
     discount = 0.9
     epsilon_explore = 0.7
-    epsilon_exploit = 0
-    explore_prop = 4/5
+    epsilon_exploit = 0.3
+    explore_prop = 1
 
     # Main epochs for learning
     start = time.time()
-    epochs = 3000
+    epochs = 500
     for i in range(0,epochs):
+        epsilon_explore = 1 - i/epochs
         if i%(int(epochs/10)) == 0:
             print (f"Epoch: {i}")
         state = (5,0)
@@ -245,8 +275,21 @@ def main():
             value = update_value(state, policy, reward, value, W, alpha=alpha, discount=discount)
             policy = update_policy(state, reward, policy, value, W, discount=discount, epoch=i, epochs=epochs, epsilon_explore=epsilon_explore, epsilon_exploit=epsilon_exploit, explore_prop=explore_prop)
             state = move_pos(state, policy[state], W, shape)
+        # performance check
+        error = 0
+        for state in record_poss:
+            if valid_pos(state,W,value.shape):
+                error += (performance(state, policy, W, shape) - shortest_path[state])
+        performance_check.append(error)
+
+        if i%(int(epochs/5)) == int(epochs/5)-1:
+            plt.imshow(value, cmap='gray')
+            plt.title(f"Estimated shortest paths to reward. Error = {error} moves. Epoch = {i+1}")
+            plt.show()
 
 
+
+    print(performance_check)
     # Final outcome
     print(f"Time taken: {time.time() - start}")
     print ("Final policy: ")
@@ -256,8 +299,9 @@ def main():
     input("Press Enter to continue...")
 
     # Plot results of top valued states
-    plot_results(results, W, record_poss, shape, epochs, explore_prop, sample_amount=4)
-    plt.imshow(value, cmap='gray')
-    plt.show()
+    plot_results(results, W, record_poss, shape, epochs, explore_prop, performance_check, sample_amount=4)
+    # plt.imshow(value, cmap='gray')
+    # plt.title(f"Estimated shortest paths to reward. Error = {error} moves")
+    # plt.show()
 
 main()
