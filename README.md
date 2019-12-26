@@ -10,4 +10,4 @@ This coursework tested the knowledge and understanding of different forms of lea
 
 This coupled with an implementation of one of the previously mentioned forms of learning and an in-depth comparison to the other forms of learning. For my CW2, I implemented and studied **reinforcement learning** in the brain.
 
-The implementation is available in the file *CW2/reinforcement.py* and the analysis is available in the file available in *CW2/report.pdf*.
+The implementation is available in the file *CW2/reinforcement.py* and the analysis is available in the file *CW2/report.pdf*.
